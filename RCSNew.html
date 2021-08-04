@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCS地图</title>
+    <style>
+        .box {
+            /* text-align: center; */
+        }
+
+        #scaleDragCanvas {
+            position: absolute;
+            width: 80%;
+            height: auto;
+        }
+
+        .tool {
+            float: right;
+        }
+        #carCanvas{
+            position: absolute;
+            width: 80%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <canvas id="scaleDragCanvas"  style="border: thin solid #aaaaaa;"></canvas>
+        <canvas id="carCanvas"  style="border: thin solid #aaaaaa;"></canvas>
+        <div class="tool">
+            <button id="up" onclick="up()">上</button>
+            <button id="down" onclick="down()">下</button>
+            <button id="left" onclick="left()">左</button>
+            <button id="right" onclick="right()">右</button>
+        </div>
+    </div>
+</body>
+<script src="./jquery.js"></script>
+<script type="text/javascript" src="./RCS.js"></script>
+<script>
+    //画布元素
+    var canvas, context;
+    var img, imgX = 0, imgY = 0, imgScale = 1;
+    var MINIMUM_SCALE = 1.0, pos = {}, posl = {}, dragging = false;
+    var res = "";
+    var speed=0;
+    var carX=32;
+    var carY=122;
+    (function int() {
+        $.ajax({
+            url: './RCS.json',
+            type: 'get',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                res = data;
+                console.log(data)
+            }
+        })
+
+        canvas = document.getElementById('scaleDragCanvas'); //画布对象
+        context = canvas.getContext('2d');//画布显示二维图片
+        
+        canvas1 = document.getElementById('carCanvas'); //小车对象
+        ctx = canvas1.getContext('2d');//画布显示二维图片
+
+
+        //网格元素
+        var canWidth = context.canvas.clientWidth;
+        var init = { top: 32, spaceH: 70 };
+        var flowData = res;
+        drawAgvMap(context, canvas, flowData);
+        
+    })();
+
+  
+ 
+
+    
+    
+</script>
+
+</html>

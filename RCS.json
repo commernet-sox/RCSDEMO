@@ -1,6 +1,6 @@
 [
     {
-        "row": 1,
+        "row": 0,
         "y": 130,
         "isAverage": true,
         "data": [
@@ -303,7 +303,7 @@
         ]
     },
     {
-        "row": 2,
+        "row": 1,
         "y": 230,
         "isAverage": true,
         "data": [
@@ -606,7 +606,7 @@
         ]
     },
     {
-        "row": 3,
+        "row": 2,
         "y": 330,
         "isAverage": true,
         "data": [
@@ -909,7 +909,7 @@
         ]
     },
     {
-        "row": 4,
+        "row": 3,
         "y": 430,
         "isAverage": true,
         "data": [
@@ -1212,7 +1212,7 @@
         ]
     },
     {
-        "row": 5,
+        "row": 4,
         "y": 530,
         "isAverage": true,
         "data": [
@@ -1515,7 +1515,7 @@
         ]
     },
     {
-        "row": 6,
+        "row": 5,
         "y": 630,
         "isAverage": true,
         "data": [
@@ -1818,7 +1818,7 @@
         ]
     },
     {
-        "row": 7,
+        "row": 6,
         "y": 730,
         "isAverage": true,
         "data": [
@@ -2121,7 +2121,7 @@
         ]
     },
     {
-        "row": 8,
+        "row": 7,
         "y": 830,
         "isAverage": true,
         "data": [
@@ -2424,7 +2424,7 @@
         ]
     },
     {
-        "row": 9,
+        "row": 8,
         "y": 930,
         "isAverage": true,
         "data": [
@@ -2727,7 +2727,7 @@
         ]
     },
     {
-        "row": 10,
+        "row": 9,
         "y": 1030,
         "isAverage": true,
         "data": [
@@ -3030,7 +3030,7 @@
         ]
     },
     {
-        "row": 11,
+        "row": 10,
         "y": 1130,
         "isAverage": true,
         "data": [
@@ -3333,7 +3333,7 @@
         ]
     },
     {
-        "row": 12,
+        "row": 11,
         "y": 1230,
         "isAverage": true,
         "data": [
@@ -3636,7 +3636,7 @@
         ]
     },
     {
-        "row": 13,
+        "row": 12,
         "y": 1330,
         "isAverage": true,
         "data": [
@@ -3939,7 +3939,7 @@
         ]
     },
     {
-        "row": 14,
+        "row": 13,
         "y": 1430,
         "isAverage": true,
         "data": [
@@ -4242,7 +4242,7 @@
         ]
     },
     {
-        "row": 15,
+        "row": 14,
         "y": 1530,
         "isAverage": true,
         "data": [
@@ -4545,7 +4545,7 @@
         ]
     },
     {
-        "row": 16,
+        "row": 15,
         "y": 1630,
         "isAverage": true,
         "data": [
@@ -4848,7 +4848,7 @@
         ]
     },
     {
-        "row": 17,
+        "row": 16,
         "y": 1730,
         "isAverage": true,
         "data": [
@@ -5151,7 +5151,7 @@
         ]
     },
     {
-        "row": 18,
+        "row": 17,
         "y": 1830,
         "isAverage": true,
         "data": [
@@ -5454,7 +5454,7 @@
         ]
     },
     {
-        "row": 19,
+        "row": 18,
         "y": 1930,
         "isAverage": true,
         "data": [
@@ -5757,7 +5757,7 @@
         ]
     },
     {
-        "row": 20,
+        "row": 19,
         "y": 2030,
         "isAverage": true,
         "data": [
@@ -6060,7 +6060,7 @@
         ]
     },
     {
-        "row": 21,
+        "row": 20,
         "y": 2130,
         "isAverage": true,
         "data": [
@@ -6363,7 +6363,7 @@
         ]
     },
     {
-        "row": 22,
+        "row": 21,
         "y": 2230,
         "isAverage": true,
         "data": [
@@ -6666,7 +6666,7 @@
         ]
     },
     {
-        "row": 23,
+        "row": 22,
         "y": 2330,
         "isAverage": true,
         "data": [
@@ -6969,7 +6969,7 @@
         ]
     },
     {
-        "row": 24,
+        "row": 23,
         "y": 2430,
         "isAverage": true,
         "data": [
@@ -7272,7 +7272,7 @@
         ]
     },
     {
-        "row": 25,
+        "row": 24,
         "y": 2530,
         "isAverage": true,
         "data": [
@@ -7575,7 +7575,7 @@
         ]
     },
     {
-        "row": 26,
+        "row": 25,
         "y": 2630,
         "isAverage": true,
         "data": [
@@ -7878,7 +7878,7 @@
         ]
     },
     {
-        "row": 27,
+        "row": 26,
         "y": 2730,
         "isAverage": true,
         "data": [
@@ -8181,7 +8181,7 @@
         ]
     },
     {
-        "row": 28,
+        "row": 27,
         "y": 2830,
         "isAverage": true,
         "data": [
@@ -8484,7 +8484,7 @@
         ]
     },
     {
-        "row": 29,
+        "row": 28,
         "y": 2930,
         "isAverage": true,
         "data": [
@@ -8787,7 +8787,7 @@
         ]
     },
     {
-        "row": 30,
+        "row": 29,
         "y": 3030,
         "isAverage": true,
         "data": [
