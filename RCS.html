@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCS地图</title>
+    <style>
+        .box {
+            /* text-align: center; */
+        }
+
+        #scaleDragCanvas {
+            position: absolute;
+            width: 80%;
+            height: auto;
+        }
+
+        .tool {
+            float: right;
+        }
+        #carCanvas{
+            position: absolute;
+            width: 80%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <canvas id="scaleDragCanvas" width="2000" height="4000" style="border: thin solid #aaaaaa;"></canvas>
+        <canvas id="carCanvas" width="2000" height="4000" style="border: thin solid #aaaaaa;"></canvas>
+        <div class="tool">
+            <button id="up" onclick="up()">上</button>
+            <button id="down" onclick="down()">下</button>
+            <button id="left" onclick="left()">左</button>
+            <button id="right" onclick="right()">右</button>
+        </div>
+    </div>
+</body>
+<script src="./jquery.js"></script>
+<script type="text/javascript" src="./drawFlowChart.js"></script>
+<script>
+    //画布元素
+    var canvas, context;
+    var img, imgX = 0, imgY = 0, imgScale = 1;
+    var MINIMUM_SCALE = 1.0, pos = {}, posl = {}, dragging = false;
+    var res = "";
+    var speed=0;
+    var carX=32;
+    var carY=122;
+    (function int() {
+        $.ajax({
+            url: './RCS.json',
+            type: 'get',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                res = data;
+                console.log(data)
+            }
+        })
+
+        canvas = document.getElementById('scaleDragCanvas'); //画布对象
+        context = canvas.getContext('2d');//画布显示二维图片
+        
+        canvas1 = document.getElementById('carCanvas'); //小车对象
+        ctx = canvas1.getContext('2d');//画布显示二维图片
+        //loadImg();
+        //canvasEventsInit();
+
+        //网格元素
+        var canWidth = context.canvas.clientWidth;
+        var init = { top: 32, spaceH: 70 };
+        var flowData = res;
+        drawFlowChart(context, canvas, flowData, init.top, init.spaceH);
+
+        function hoverSingleChart(singleData) {
+            console.log("---------鼠标事件-----------");
+            console.log(singleData);
+        }
+
+        //画小车
+        
+        ctx.fillStyle = 'red';
+        ctx.fillRect(33, 123, 16,16);
+        //ctx.fill();
+        
+    })();
+
+    function loadImg() {
+        img = new Image();
+        img.onload = function () {
+            drawImage();
+        }
+        img.src = 'https://static.zhihu.com/liukanshan/images/comics/bg-89c9bdc3.jpg';//刘看山
+    }
+
+    function drawImage() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        // 保证  imgX  在  [img.width*(1-imgScale),0]   区间内
+        if (imgX < canvas.width * (1 - imgScale)) {
+            imgX = canvas.width * (1 - imgScale);
+        } else if (imgX > 0) {
+            imgX = 0
+        }
+        // 保证  imgY   在  [img.height*(1-imgScale),0]   区间内
+        if (imgY < canvas.height * (1 - imgScale)) {
+            imgY = canvas.height * (1 - imgScale);
+        } else if (imgY > 0) {
+            imgY = 0
+        }
+
+
+        context.drawImage(
+            canvas, //规定要使用的图像、画布或视频。
+            0, 0, //开始剪切的 x 坐标位置。
+            canvas.width, canvas.height,  //被剪切图像的高度。
+            imgX, imgY,//在画布上放置图像的 x 、y坐标位置。
+            canvas.width * imgScale, canvas.height * imgScale  //要使用的图像的宽度、高度
+        );
+    }
+
+
+    /*事件注册*/
+    // function canvasEventsInit() {
+    //     canvas.onmousedown = function (event) {
+    //         dragging = true;
+    //         pos = windowToCanvas(event.clientX, event.clientY);  //坐标转换，将窗口坐标转换成canvas的坐标
+
+    //     };
+    //     canvas.onmousemove = function (evt) {  //移动
+    //         if (dragging) {
+    //             posl = windowToCanvas(evt.clientX, evt.clientY);
+    //             var x = posl.x - pos.x, y = posl.y - pos.y;
+    //             imgX += x;
+    //             imgY += y;
+    //             pos = JSON.parse(JSON.stringify(posl));
+    //             drawImage();  //重新绘制图片
+    //         }
+
+    //     };
+    //     canvas.onmouseup = function () {
+    //         dragging = false;
+    //     };
+    //     canvas.onmousewheel = canvas.onwheel = function (event) {    //滚轮放大缩小
+    //         var pos = windowToCanvas(event.clientX, event.clientY);
+    //         event.wheelDelta = event.wheelDelta ? event.wheelDelta : (event.deltalY * (-40));  //获取当前鼠标的滚动情况
+    //         var newPos = { x: ((pos.x - imgX) / imgScale).toFixed(2), y: ((pos.y - imgY) / imgScale).toFixed(2) };
+    //         if (event.wheelDelta > 0) {// 放大
+    //             imgScale += 0.1;
+    //             imgX = (1 - imgScale) * newPos.x + (pos.x - newPos.x);
+    //             imgY = (1 - imgScale) * newPos.y + (pos.y - newPos.y);
+    //             console.log("放大", imgX, imgY);
+    //         } else {//  缩小
+    //             imgScale -= 0.1;
+    //             if (imgScale < MINIMUM_SCALE) {//最小缩放1
+    //                 imgScale = MINIMUM_SCALE;
+    //             }
+    //             imgX = (1 - imgScale) * newPos.x + (pos.x - newPos.x);
+    //             imgY = (1 - imgScale) * newPos.y + (pos.y - newPos.y);
+    //             console.log("缩小", imgX, imgY);
+    //         }
+    //         drawImage();   //重新绘制图片
+
+    //     };
+    // }
+
+    /*坐标转换*/
+    function windowToCanvas(x, y) {
+        var box = canvas.getBoundingClientRect();  //这个方法返回一个矩形对象，包含四个属性：left、top、right和bottom。分别表示元素各边与页面上边和左边的距离
+        return {
+            x: x - box.left - (box.width - canvas.width) / 2,
+            y: y - box.top - (box.height - canvas.height) / 2
+        };
+    }
+
+    //小车移动
+    function up() {
+        console.log('上')
+        var i=0;
+        setInterval(() => {
+            i+=10;
+            if(i<=100)
+            {
+                run(ctx,'up')
+            }
+            else
+            {
+                
+            }
+        }, 50);
+    }
+    function down() {
+        console.log('下')
+        var i=0;
+        setInterval(() => {
+            i+=10;
+            if(i<=100)
+            {
+                
+                run(ctx,'down')
+                
+            }
+            else
+            {
+                
+            }
+        }, 50);
+    }
+    function left() {
+        console.log('左')
+        var i=0;
+        setInterval(() => {
+            i+=10;
+            if(i<=100)
+            {
+                run(ctx,'left')
+            }
+            else
+            {
+                
+            }
+        }, 50);
+    }
+    function right() {
+        console.log('右')
+        var i=0;
+        setInterval(() => {
+            i+=10;
+            if(i<=100)
+            {
+                run(ctx,'right')
+            }
+            else
+            {
+                
+            }
+        }, 50);
+    }
+
+    function run(ctx, position) {
+        ctx.clearRect(carX, carY, 16, 16);
+        switch (position) {
+            case 'up':
+            speed = -10;
+            carY+=speed;
+                break;
+            case 'down':
+            speed = 10;
+            carY+=speed;
+                break;
+            case 'left':
+            speed = -10.1;
+            carX+=speed;
+                break;
+            case 'right':
+            speed = 10.1;
+            carX+=speed;
+                break;
+        }
+
+        ctx.beginPath();
+        ctx.fillRect(carX, carY, 16, 16);
+        ctx.closePath();
+        ctx.fill();
+    }
+</script>
+
+</html>
