@@ -20,7 +20,8 @@
         .tool {
             float: right;
         }
-        #carCanvas{
+
+        #carCanvas {
             position: absolute;
             width: 80%;
             height: auto;
@@ -30,30 +31,79 @@
 
 <body>
     <div class="box">
-        <canvas id="scaleDragCanvas"  style="border: thin solid #aaaaaa;"></canvas>
-        <canvas id="carCanvas"  style="border: thin solid #aaaaaa;"></canvas>
+        <canvas id="scaleDragCanvas" width="1366" height="768" style="border: thin solid #aaaaaa;"></canvas>
+        <canvas id="carCanvas" width="1366" height="768" style="border: thin solid #aaaaaa;"></canvas>
         <div class="tool">
             <button id="up" onclick="up()">上</button>
             <button id="down" onclick="down()">下</button>
             <button id="left" onclick="left()">左</button>
             <button id="right" onclick="right()">右</button>
+            <br>
+            <input type="text" id="agv1" value="">
+            <button onclick="AGV1()">AGV1</button>
+            <br>
+            <input type="text" id="agv2" value="">
+            <button onclick="AGV2()">AGV2</button>
+            <br>
+            <button onclick="AGV3()">AGV3</button>
+            <button onclick="AGV4()">AGV4</button>
         </div>
     </div>
+
 </body>
 <script src="./jquery.js"></script>
-<script type="text/javascript" src="./RCS.js"></script>
+<script type="text/javascript" src="./RCSNew.js"></script>
 <script>
     //画布元素
-    var canvas, context;
+    var canvas, context, ctx, canvas1;
     var img, imgX = 0, imgY = 0, imgScale = 1;
     var MINIMUM_SCALE = 1.0, pos = {}, posl = {}, dragging = false;
     var res = "";
-    var speed=0;
-    var carX=32;
-    var carY=122;
+    var speed = 0;
+    var space = 0;
+    var step = 0;
+    var i=0;
+    var car1={x:0,
+        y:0,
+        color:'black',
+        path:[],
+        i:0,//当前路径index
+        control:{
+            start:{
+                x:0,
+                y:0,
+                floor:1
+            },
+            end:{
+                x:18,
+                y:19,
+                floor:1
+            },
+            agvId:1
+        }
+    };
+    var car2={x:0,
+        y:0,
+        color:'red',
+        path:[],
+        i:0,
+        control:{
+            start:{
+                x:1,
+                y:0,
+                floor:1
+            },
+            end:{
+                x:19,
+                y:19,
+                floor:1
+            },
+            agvId:2
+        }
+    };
     (function int() {
         $.ajax({
-            url: './RCS.json',
+            url: './RCSNew.json',
             type: 'get',
             dataType: 'json',
             async: false,
@@ -65,24 +115,203 @@
 
         canvas = document.getElementById('scaleDragCanvas'); //画布对象
         context = canvas.getContext('2d');//画布显示二维图片
-        
+
         canvas1 = document.getElementById('carCanvas'); //小车对象
         ctx = canvas1.getContext('2d');//画布显示二维图片
-
+        
 
         //网格元素
-        var canWidth = context.canvas.clientWidth;
-        var init = { top: 32, spaceH: 70 };
         var flowData = res;
-        drawAgvMap(context, canvas, flowData);
-        
+        space = drawAgvMap(context, canvas, flowData);
+        step = space / 10;
+        console.log(space, step)
+        //画小车
+        car1.x = flowData[0].data[0].x;
+        car1.y = flowData[0].data[0].y;
+        ctx.fillStyle = car1.color;
+        ctx.fillRect(car1.x, car1.y, 6, 6);
+
+        car2.x=flowData[0].data[1].x;
+        car2.y=flowData[0].data[1].y;
+        ctx.fillStyle=car2.color;
+        ctx.fillRect(car2.x, car2.y, 6, 6);
+
     })();
+    function AGV1() {
+        if($('#agv1').val()!='')
+        {
+            var inp = $('#agv1').val().split(',');
+            car1.control.end.x=inp[0];
+            car1.control.end.y=inp[1];
+        }
+        $.ajax({
+            url: 'http://10.27.1.28:12580/api/Dijkstra/GetPath',
+            type: 'post',
+            dataType: 'json',
+            async: false,
+            contentType: 'application/json',
+            data: JSON.stringify(car1.control),
+            success: function (data) {
+                console.log(data)
+                if(data.success)
+                {
+                    car1.path=data.data;
+                    move(car1);
+                }
+                else{
+                    alert(data.msg)
+                }
+            }
+        })
+    }
+    function AGV2() {
+        if($('#agv2').val()!='')
+        {
+            var inp = $('#agv2').val().split(',');
+            car2.control.end.x=inp[0];
+            car2.control.end.y=inp[1];
+        }
+        $.ajax({
+            url: 'http://10.27.1.28:12580/api/Dijkstra/GetPath',
+            type: 'post',
+            dataType: 'json',
+            async: false,
+            contentType: 'application/json',
+            data: JSON.stringify(car2.control),
+            success: function (data) {
+                console.log(data)
+                if(data.success)
+                {
+                    car2.path=data.data;
+                    move(car2);
+                }
+                else
+                {
+                    alert(data.msg)
+                }
+            }
+        })
+    }
 
-  
- 
+    function move(car) {
+        
+        if(car.i==car.path.length)
+        {
+            //结束
+            console.log("agv:"+car.control.agvId+'移动结束')
+            car.i=0;
+            car.control.start.x=car.control.end.x;
+            car.control.start.y=car.control.end.y;
+        }
+        else
+        {
+            var element=car.path[car.i];
+            car.i++;
+            switch (element) {
+            case 'up':
+                up(car);
+                break;
+            case 'down':
+                down(car);
+                break;
+            case 'left':
+                left(car);
+                break;
+            case 'right':
+                right(car);
+                break;
+        }
+        setTimeout(() => {
+            move(car);
+        }, 1000);
+        }
+    }
+    //小车移动
+    function up(car) {
+        console.log('上')
+        var i = 0;
+        setInterval(() => {
+            i += step;
+            if (i <= space + step) {
+                run(ctx, 'up',car)
+            }
+            else {
 
-    
-    
+            }
+        }, 100);
+    }
+    function down(car) {
+        console.log('下')
+        var i = 0;
+        setInterval(() => {
+            i += step;
+            if (i <= space + step) {
+                run(ctx, 'down',car)
+            }
+            else {
+
+            }
+        }, 100);
+    }
+    function left(car) {
+        console.log('左')
+        var i = 0;
+        setInterval(() => {
+            i += step;
+            if (i <= space + step) {
+                run(ctx, 'left',car)
+            }
+            else {
+
+            }
+        }, 100);
+    }
+    function right(car) {
+        console.log('右')
+        var i = 0;
+        setInterval(() => {
+            i += step;
+            if (i <= space + step) {
+                run(ctx, 'right',car)
+            }
+            else {
+
+            }
+        }, 100);
+    }
+
+    function run(ctx, position,car) {
+        console.log(car.x, car.y)
+        ctx.clearRect(car.x - 5, car.y - 5, 16, 16);
+        switch (position) {
+            case 'up':
+                speed = -step;
+                car.y += speed;
+                break;
+            case 'down':
+                speed = step;
+                car.y += speed;
+                break;
+            case 'left':
+                speed = -step;
+                car.x += speed;
+                break;
+            case 'right':
+                speed = step;
+                car.x += speed;
+                break;
+        }
+
+        ctx.beginPath();
+        ctx.fillStyle=car.color;
+        ctx.fillRect(car.x, car.y, 6, 6);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+
+
+
 </script>
 
 </html>
