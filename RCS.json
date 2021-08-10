@@ -98,6 +98,7 @@
                 "type": "Step",
                 "text": "17",
                 "name": "step_1_7",
+               
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",

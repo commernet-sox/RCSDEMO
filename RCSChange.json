@@ -6549,6 +6549,7 @@
                 "type": "Step",
                 "text": "1923",
                 "name": "step_19_23",
+                "show":true,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -6645,10 +6646,7 @@
                 "text": "201",
                 "name": "step_20_1",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_1"
-                    }
+                   
                 ]
             },
             {
@@ -6656,10 +6654,7 @@
                 "text": "202",
                 "name": "step_20_2",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_2"
-                    }
+                    
                 ]
             },
             {
@@ -6667,10 +6662,7 @@
                 "text": "203",
                 "name": "step_20_3",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_3"
-                    }
+                    
                 ]
             },
             {
@@ -6678,10 +6670,7 @@
                 "text": "204",
                 "name": "step_20_4",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_4"
-                    }
+                    
                 ]
             },
             {
@@ -6689,10 +6678,7 @@
                 "text": "205",
                 "name": "step_20_5",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_5"
-                    }
+                    
                 ]
             },
             {
@@ -6700,10 +6686,7 @@
                 "text": "206",
                 "name": "step_20_6",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_6"
-                    }
+                    
                 ]
             },
             {
@@ -6711,10 +6694,7 @@
                 "text": "207",
                 "name": "step_20_7",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_7"
-                    }
+                   
                 ]
             },
             {
@@ -6722,10 +6702,7 @@
                 "text": "208",
                 "name": "step_20_8",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_8"
-                    }
+                    
                 ]
             },
             {
@@ -6733,10 +6710,7 @@
                 "text": "209",
                 "name": "step_20_9",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_9"
-                    }
+                    
                 ]
             },
             {
@@ -6744,10 +6718,7 @@
                 "text": "2010",
                 "name": "step_20_10",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_10"
-                    }
+                    
                 ]
             },
             {
@@ -6755,10 +6726,7 @@
                 "text": "2011",
                 "name": "step_20_11",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_11"
-                    }
+                    
                 ]
             },
             {
@@ -6766,10 +6734,7 @@
                 "text": "2012",
                 "name": "step_20_12",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_12"
-                    }
+                    
                 ]
             },
             {
@@ -6777,10 +6742,7 @@
                 "text": "2013",
                 "name": "step_20_13",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_13"
-                    }
+                    
                 ]
             },
             {
@@ -6788,10 +6750,7 @@
                 "text": "2014",
                 "name": "step_20_14",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_14"
-                    }
+                    
                 ]
             },
             {
@@ -6799,10 +6758,7 @@
                 "text": "2015",
                 "name": "step_20_15",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_15"
-                    }
+                    
                 ]
             },
             {
@@ -6810,10 +6766,7 @@
                 "text": "2016",
                 "name": "step_20_16",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_16"
-                    }
+                    
                 ]
             },
             {
@@ -6821,10 +6774,7 @@
                 "text": "2017",
                 "name": "step_20_17",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_17"
-                    }
+                    
                 ]
             },
             {
@@ -6832,10 +6782,7 @@
                 "text": "2018",
                 "name": "step_20_18",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_18"
-                    }
+                    
                 ]
             },
             {
@@ -6843,10 +6790,7 @@
                 "text": "2019",
                 "name": "step_20_19",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_19"
-                    }
+                    
                 ]
             },
             {
@@ -6854,10 +6798,7 @@
                 "text": "2020",
                 "name": "step_20_20",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_20"
-                    }
+                    
                 ]
             },
             {
@@ -6865,10 +6806,7 @@
                 "text": "2021",
                 "name": "step_20_21",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_21"
-                    }
+                    
                 ]
             },
             {
@@ -6876,10 +6814,7 @@
                 "text": "2022",
                 "name": "step_20_22",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_22"
-                    }
+                    
                 ]
             },
             {
@@ -6887,10 +6822,7 @@
                 "text": "2023",
                 "name": "step_20_23",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_23"
-                    }
+                    
                 ]
             },
             {
@@ -6898,10 +6830,7 @@
                 "text": "2024",
                 "name": "step_20_24",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_24"
-                    }
+                    
                 ]
             },
             {
@@ -6909,10 +6838,7 @@
                 "text": "2025",
                 "name": "step_20_25",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_25"
-                    }
+                   
                 ]
             },
             {
@@ -6920,10 +6846,7 @@
                 "text": "2026",
                 "name": "step_20_26",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_26"
-                    }
+                    
                 ]
             },
             {
@@ -6931,10 +6854,7 @@
                 "text": "2027",
                 "name": "step_20_27",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_27"
-                    }
+                    
                 ]
             },
             {
@@ -6942,10 +6862,7 @@
                 "text": "2028",
                 "name": "step_20_28",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_28"
-                    }
+                    
                 ]
             },
             {
@@ -6953,10 +6870,7 @@
                 "text": "2029",
                 "name": "step_20_29",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_29"
-                    }
+                    
                 ]
             },
             {
@@ -6964,10 +6878,7 @@
                 "text": "2030",
                 "name": "step_20_30",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_30"
-                    }
+                    
                 ]
             }
         ]

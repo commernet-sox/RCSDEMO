@@ -83,8 +83,17 @@ function drawRowChart(context,row){
     this.w = 6;
     this.x = x;
     this.y = y;
+    if(item.show!=undefined && !item.show)
+    {
+        console.log(item)
+        context.globalAlpha=0;
+    }
+    else
+    {
+        context.globalAlpha=1;
+    }
     context.lineWidth="1";
-    context.fillStyle="#5B9BD5";
+    context.fillStyle="#aaaaaa";//5B9BD5
     context.fillRect(x,y,this.w,this.h);
     
 }
@@ -136,7 +145,7 @@ function Arrow(x1, y1, x2, y2) {
     this.tmpY1 = null;
     this.tmpX2 = null;
     this.tmpY2 = null;
-    this.color = "#5B9BD5";
+    this.color = "#aaaaaa";
   
 }
 Arrow.prototype.setColor = function(color) {
