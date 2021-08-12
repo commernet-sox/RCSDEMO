@@ -199,7 +199,13 @@ function Step(context, x, y, item,box) {
     context.globalAlpha = 1;
   }
   context.lineWidth = 1;
-  context.fillStyle = "#aaaaaa";//5B9BD5
+  if (item.color != undefined && item.color != "") {
+    context.fillStyle = item.color;
+  }
+  else {
+    context.fillStyle = "#f1bbc4";//5B9BD5
+  }
+  //context.fillStyle = "#aaaaaa";//5B9BD5
   context.fillRect(x, y, this.w, this.h);
 
 }
@@ -240,7 +246,7 @@ Step.prototype.drawBottomToTop = function (obj, context) {
 Step.prototype.drawRightToLeft = function (obj, context) {
   var arrow = null;
   if (obj.flag == "step") {
-    arrow = new Arrow(this.x + obj.w, this.y + obj.h / 2, obj.x + obj.w / 2, obj.y + obj.h / 2);
+    arrow = new Arrow(this.x + obj.w, this.y + obj.h / 2, obj.x, obj.y + obj.h / 2);
   }
   arrow.drawLeftToRightOrRightToLeft(context);
 }
@@ -254,7 +260,7 @@ function Arrow(x1, y1, x2, y2) {
   this.tmpY1 = null;
   this.tmpX2 = null;
   this.tmpY2 = null;
-  this.color = "#aaaaaa";
+  this.color = "#ffffff";
 
 }
 //第一个拐点

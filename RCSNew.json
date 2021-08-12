@@ -8,6 +8,7 @@
                 "type": "Step",
                 "text": "11",
                 "name": "step_1_1",
+                "color":"#f1bbc4",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -19,6 +20,7 @@
                 "type": "Step",
                 "text": "12",
                 "name": "step_1_2",
+                "color":"#f1bbc4",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -30,6 +32,7 @@
                 "type": "Step",
                 "text": "13",
                 "name": "step_1_3",
+                "color":"#f1bbc4",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -41,6 +44,7 @@
                 "type": "Step",
                 "text": "14",
                 "name": "step_1_4",
+                "color":"#f1bbc4",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -52,6 +56,7 @@
                 "type": "Step",
                 "text": "15",
                 "name": "step_1_5",
+                "color":"#f1bbc4",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -63,6 +68,7 @@
                 "type": "Step",
                 "text": "16",
                 "name": "step_1_6",
+                "color":"#f1bbc4",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -74,6 +80,7 @@
                 "type": "Step",
                 "text": "17",
                 "name": "step_1_7",
+                "color":"#f1bbc4",
                 "show":true,
                 "arrowArr": [
                     {
@@ -86,6 +93,7 @@
                 "type": "Step",
                 "text": "18",
                 "name": "step_1_8",
+                "color":"#f1bbc4",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -97,6 +105,7 @@
                 "type": "Step",
                 "text": "19",
                 "name": "step_1_9",
+                "color":"#f1bbc4",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -108,6 +117,7 @@
                 "type": "Step",
                 "text": "110",
                 "name": "step_1_10",
+                "color":"#f1bbc4",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -119,6 +129,7 @@
                 "type": "Step",
                 "text": "111",
                 "name": "step_1_11",
+                "color":"#f1bbc4",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -130,6 +141,7 @@
                 "type": "Step",
                 "text": "112",
                 "name": "step_1_12",
+                "color":"#f1bbc4",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -141,6 +153,7 @@
                 "type": "Step",
                 "text": "113",
                 "name": "step_1_13",
+                "color":"#f1bbc4",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -152,6 +165,7 @@
                 "type": "Step",
                 "text": "114",
                 "name": "step_1_14",
+                "color":"#f1bbc4",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -163,6 +177,7 @@
                 "type": "Step",
                 "text": "115",
                 "name": "step_1_15",
+                "color":"#f1bbc4",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -328,11 +343,9 @@
                 "type": "Step",
                 "text": "130",
                 "name": "step_1_30",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_2_30"
-                    }
+                    
                 ]
             }
         ]
@@ -665,11 +678,9 @@
                 "type": "Step",
                 "text": "230",
                 "name": "step_2_30",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_3_30"
-                    }
+                    
                 ]
             }
         ]
@@ -1002,11 +1013,9 @@
                 "type": "Step",
                 "text": "330",
                 "name": "step_3_30",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_4_30"
-                    }
+                    
                 ]
             }
         ]
@@ -1339,11 +1348,9 @@
                 "type": "Step",
                 "text": "430",
                 "name": "step_4_30",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_5_30"
-                    }
+                   
                 ]
             }
         ]
@@ -1357,10 +1364,11 @@
                 "type": "Step",
                 "text": "51",
                 "name": "step_5_1",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
-                        "to": "step_6_1"
+                        "to": "step_16_1"
                     },
                     {
                         "arrow": "drawRightToLeft",
@@ -1372,6 +1380,7 @@
                 "type": "Step",
                 "text": "52",
                 "name": "step_5_2",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1387,6 +1396,7 @@
                 "type": "Step",
                 "text": "53",
                 "name": "step_5_3",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1402,6 +1412,7 @@
                 "type": "Step",
                 "text": "54",
                 "name": "step_5_4",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1417,6 +1428,7 @@
                 "type": "Step",
                 "text": "55",
                 "name": "step_5_5",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1432,6 +1444,7 @@
                 "type": "Step",
                 "text": "56",
                 "name": "step_5_6",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1447,6 +1460,7 @@
                 "type": "Step",
                 "text": "57",
                 "name": "step_5_7",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1462,6 +1476,7 @@
                 "type": "Step",
                 "text": "58",
                 "name": "step_5_8",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1477,6 +1492,7 @@
                 "type": "Step",
                 "text": "59",
                 "name": "step_5_9",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1492,6 +1508,7 @@
                 "type": "Step",
                 "text": "510",
                 "name": "step_5_10",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1507,6 +1524,7 @@
                 "type": "Step",
                 "text": "511",
                 "name": "step_5_11",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1522,6 +1540,7 @@
                 "type": "Step",
                 "text": "512",
                 "name": "step_5_12",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1537,6 +1556,7 @@
                 "type": "Step",
                 "text": "513",
                 "name": "step_5_13",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1552,6 +1572,7 @@
                 "type": "Step",
                 "text": "514",
                 "name": "step_5_14",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1567,6 +1588,7 @@
                 "type": "Step",
                 "text": "515",
                 "name": "step_5_15",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1582,6 +1604,7 @@
                 "type": "Step",
                 "text": "516",
                 "name": "step_5_16",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1597,6 +1620,7 @@
                 "type": "Step",
                 "text": "517",
                 "name": "step_5_17",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1612,6 +1636,7 @@
                 "type": "Step",
                 "text": "518",
                 "name": "step_5_18",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1627,6 +1652,7 @@
                 "type": "Step",
                 "text": "519",
                 "name": "step_5_19",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1642,6 +1668,7 @@
                 "type": "Step",
                 "text": "520",
                 "name": "step_5_20",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1657,6 +1684,7 @@
                 "type": "Step",
                 "text": "521",
                 "name": "step_5_21",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1672,6 +1700,7 @@
                 "type": "Step",
                 "text": "522",
                 "name": "step_5_22",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1687,6 +1716,7 @@
                 "type": "Step",
                 "text": "523",
                 "name": "step_5_23",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1702,6 +1732,7 @@
                 "type": "Step",
                 "text": "524",
                 "name": "step_5_24",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1717,6 +1748,7 @@
                 "type": "Step",
                 "text": "525",
                 "name": "step_5_25",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1732,6 +1764,7 @@
                 "type": "Step",
                 "text": "526",
                 "name": "step_5_26",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1747,10 +1780,11 @@
                 "type": "Step",
                 "text": "527",
                 "name": "step_5_27",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
-                        "to": "step_6_27"
+                        "to": "step_16_27"
                     },
                     {
                         "arrow": "drawRightToLeft",
@@ -1762,6 +1796,7 @@
                 "type": "Step",
                 "text": "528",
                 "name": "step_5_28",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1777,6 +1812,7 @@
                 "type": "Step",
                 "text": "529",
                 "name": "step_5_29",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -1792,11 +1828,9 @@
                 "type": "Step",
                 "text": "530",
                 "name": "step_5_30",
+                "color":"#5B9BD5",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_6_30"
-                    }
+                    
                 ]
             }
         ]
@@ -1810,6 +1844,7 @@
                 "type": "Step",
                 "text": "61",
                 "name": "step_6_1",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -2096,6 +2131,7 @@
                 "type": "Step",
                 "text": "627",
                 "name": "step_6_27",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -2129,11 +2165,9 @@
                 "type": "Step",
                 "text": "630",
                 "name": "step_6_30",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_7_30"
-                    }
+                    
                 ]
             }
         ]
@@ -2147,6 +2181,7 @@
                 "type": "Step",
                 "text": "71",
                 "name": "step_7_1",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -2433,6 +2468,7 @@
                 "type": "Step",
                 "text": "727",
                 "name": "step_7_27",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -2445,10 +2481,7 @@
                 "text": "728",
                 "name": "step_7_28",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_8_28"
-                    }
+                    
                 ]
             },
             {
@@ -2466,11 +2499,9 @@
                 "type": "Step",
                 "text": "730",
                 "name": "step_7_30",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_8_30"
-                    }
+                    
                 ]
             }
         ]
@@ -2484,6 +2515,7 @@
                 "type": "Step",
                 "text": "81",
                 "name": "step_8_1",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -2770,6 +2802,7 @@
                 "type": "Step",
                 "text": "827",
                 "name": "step_8_27",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -2781,11 +2814,9 @@
                 "type": "Step",
                 "text": "828",
                 "name": "step_8_28",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_9_28"
-                    }
+                    
                 ]
             },
             {
@@ -2803,11 +2834,9 @@
                 "type": "Step",
                 "text": "830",
                 "name": "step_8_30",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_9_30"
-                    }
+                    
                 ]
             }
         ]
@@ -2821,6 +2850,7 @@
                 "type": "Step",
                 "text": "91",
                 "name": "step_9_1",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -3107,6 +3137,7 @@
                 "type": "Step",
                 "text": "927",
                 "name": "step_9_27",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -3118,11 +3149,9 @@
                 "type": "Step",
                 "text": "928",
                 "name": "step_9_28",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_10_28"
-                    }
+                    
                 ]
             },
             {
@@ -3140,11 +3169,9 @@
                 "type": "Step",
                 "text": "930",
                 "name": "step_9_30",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_10_30"
-                    }
+                    
                 ]
             }
         ]
@@ -3158,6 +3185,7 @@
                 "type": "Step",
                 "text": "101",
                 "name": "step_10_1",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -3444,6 +3472,7 @@
                 "type": "Step",
                 "text": "1027",
                 "name": "step_10_27",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -3477,11 +3506,9 @@
                 "type": "Step",
                 "text": "1030",
                 "name": "step_10_30",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_11_30"
-                    }
+                    
                 ]
             }
         ]
@@ -3495,6 +3522,7 @@
                 "type": "Step",
                 "text": "111",
                 "name": "step_11_1",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -3781,6 +3809,7 @@
                 "type": "Step",
                 "text": "1127",
                 "name": "step_11_27",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -3814,11 +3843,9 @@
                 "type": "Step",
                 "text": "1130",
                 "name": "step_11_30",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_12_30"
-                    }
+                    
                 ]
             }
         ]
@@ -3832,6 +3859,7 @@
                 "type": "Step",
                 "text": "121",
                 "name": "step_12_1",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -4118,6 +4146,7 @@
                 "type": "Step",
                 "text": "1227",
                 "name": "step_12_27",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -4169,6 +4198,7 @@
                 "type": "Step",
                 "text": "131",
                 "name": "step_13_1",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -4455,6 +4485,7 @@
                 "type": "Step",
                 "text": "1327",
                 "name": "step_13_27",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -4506,6 +4537,7 @@
                 "type": "Step",
                 "text": "141",
                 "name": "step_14_1",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -4792,6 +4824,7 @@
                 "type": "Step",
                 "text": "1427",
                 "name": "step_14_27",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -4843,6 +4876,7 @@
                 "type": "Step",
                 "text": "151",
                 "name": "step_15_1",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5129,6 +5163,7 @@
                 "type": "Step",
                 "text": "1527",
                 "name": "step_15_27",
+                "show":false,
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5180,6 +5215,7 @@
                 "type": "Step",
                 "text": "161",
                 "name": "step_16_1",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5195,6 +5231,7 @@
                 "type": "Step",
                 "text": "162",
                 "name": "step_16_2",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5210,6 +5247,7 @@
                 "type": "Step",
                 "text": "163",
                 "name": "step_16_3",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5225,6 +5263,7 @@
                 "type": "Step",
                 "text": "164",
                 "name": "step_16_4",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5240,6 +5279,7 @@
                 "type": "Step",
                 "text": "165",
                 "name": "step_16_5",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5255,6 +5295,7 @@
                 "type": "Step",
                 "text": "166",
                 "name": "step_16_6",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5270,6 +5311,7 @@
                 "type": "Step",
                 "text": "167",
                 "name": "step_16_7",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5285,6 +5327,7 @@
                 "type": "Step",
                 "text": "168",
                 "name": "step_16_8",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5300,6 +5343,7 @@
                 "type": "Step",
                 "text": "169",
                 "name": "step_16_9",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5315,6 +5359,7 @@
                 "type": "Step",
                 "text": "1610",
                 "name": "step_16_10",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5330,6 +5375,7 @@
                 "type": "Step",
                 "text": "1611",
                 "name": "step_16_11",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5345,6 +5391,7 @@
                 "type": "Step",
                 "text": "1612",
                 "name": "step_16_12",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5360,6 +5407,7 @@
                 "type": "Step",
                 "text": "1613",
                 "name": "step_16_13",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5375,6 +5423,7 @@
                 "type": "Step",
                 "text": "1614",
                 "name": "step_16_14",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5390,6 +5439,7 @@
                 "type": "Step",
                 "text": "1615",
                 "name": "step_16_15",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5405,6 +5455,7 @@
                 "type": "Step",
                 "text": "1616",
                 "name": "step_16_16",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5420,6 +5471,7 @@
                 "type": "Step",
                 "text": "1617",
                 "name": "step_16_17",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5435,6 +5487,7 @@
                 "type": "Step",
                 "text": "1618",
                 "name": "step_16_18",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5450,6 +5503,7 @@
                 "type": "Step",
                 "text": "1619",
                 "name": "step_16_19",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5465,6 +5519,7 @@
                 "type": "Step",
                 "text": "1620",
                 "name": "step_16_20",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5480,6 +5535,7 @@
                 "type": "Step",
                 "text": "1621",
                 "name": "step_16_21",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5495,6 +5551,7 @@
                 "type": "Step",
                 "text": "1622",
                 "name": "step_16_22",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5510,6 +5567,7 @@
                 "type": "Step",
                 "text": "1623",
                 "name": "step_16_23",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5525,6 +5583,7 @@
                 "type": "Step",
                 "text": "1624",
                 "name": "step_16_24",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5540,6 +5599,7 @@
                 "type": "Step",
                 "text": "1625",
                 "name": "step_16_25",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5555,6 +5615,7 @@
                 "type": "Step",
                 "text": "1626",
                 "name": "step_16_26",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5570,6 +5631,7 @@
                 "type": "Step",
                 "text": "1627",
                 "name": "step_16_27",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5585,6 +5647,7 @@
                 "type": "Step",
                 "text": "1628",
                 "name": "step_16_28",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5600,6 +5663,7 @@
                 "type": "Step",
                 "text": "1629",
                 "name": "step_16_29",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5615,6 +5679,7 @@
                 "type": "Step",
                 "text": "1630",
                 "name": "step_16_30",
+                "color":"#ece612",
                 "arrowArr": [
                     {
                         "arrow": "drawBottomToTop",
@@ -5971,10 +6036,7 @@
                 "text": "181",
                 "name": "step_18_1",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_19_1"
-                    }
+                    
                 ]
             },
             {
@@ -6279,10 +6341,7 @@
                 "text": "1829",
                 "name": "step_18_29",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_19_29"
-                    }
+                    
                 ]
             },
             {
@@ -6290,10 +6349,7 @@
                 "text": "1830",
                 "name": "step_18_30",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_19_30"
-                    }
+                    
                 ]
             }
         ]
@@ -6307,11 +6363,9 @@
                 "type": "Step",
                 "text": "191",
                 "name": "step_19_1",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_20_1"
-                    }
+                    
                 ]
             },
             {
@@ -6615,22 +6669,18 @@
                 "type": "Step",
                 "text": "1929",
                 "name": "step_19_29",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_20_29"
-                    }
+                    
                 ]
             },
             {
                 "type": "Step",
                 "text": "1930",
                 "name": "step_19_30",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_20_30"
-                    }
+                    
                 ]
             }
         ]
@@ -6644,11 +6694,9 @@
                 "type": "Step",
                 "text": "201",
                 "name": "step_20_1",
+                "show":false,
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_1"
-                    }
+                    
                 ]
             },
             {
@@ -6656,10 +6704,7 @@
                 "text": "202",
                 "name": "step_20_2",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_2"
-                    }
+                    
                 ]
             },
             {
@@ -6667,10 +6712,7 @@
                 "text": "203",
                 "name": "step_20_3",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_3"
-                    }
+                    
                 ]
             },
             {
@@ -6678,10 +6720,7 @@
                 "text": "204",
                 "name": "step_20_4",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_4"
-                    }
+                    
                 ]
             },
             {
@@ -6689,10 +6728,7 @@
                 "text": "205",
                 "name": "step_20_5",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_5"
-                    }
+                    
                 ]
             },
             {
@@ -6700,10 +6736,7 @@
                 "text": "206",
                 "name": "step_20_6",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_6"
-                    }
+                    
                 ]
             },
             {
@@ -6711,10 +6744,7 @@
                 "text": "207",
                 "name": "step_20_7",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_7"
-                    }
+                    
                 ]
             },
             {
@@ -6722,10 +6752,7 @@
                 "text": "208",
                 "name": "step_20_8",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_8"
-                    }
+                    
                 ]
             },
             {
@@ -6733,10 +6760,7 @@
                 "text": "209",
                 "name": "step_20_9",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_9"
-                    }
+                    
                 ]
             },
             {
@@ -6744,10 +6768,7 @@
                 "text": "2010",
                 "name": "step_20_10",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_10"
-                    }
+                    
                 ]
             },
             {
@@ -6755,10 +6776,7 @@
                 "text": "2011",
                 "name": "step_20_11",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_11"
-                    }
+                    
                 ]
             },
             {
@@ -6766,10 +6784,7 @@
                 "text": "2012",
                 "name": "step_20_12",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_12"
-                    }
+                    
                 ]
             },
             {
@@ -6777,10 +6792,7 @@
                 "text": "2013",
                 "name": "step_20_13",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_13"
-                    }
+                    
                 ]
             },
             {
@@ -6788,10 +6800,7 @@
                 "text": "2014",
                 "name": "step_20_14",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_14"
-                    }
+                    
                 ]
             },
             {
@@ -6799,10 +6808,7 @@
                 "text": "2015",
                 "name": "step_20_15",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_15"
-                    }
+                    
                 ]
             },
             {
@@ -6810,10 +6816,7 @@
                 "text": "2016",
                 "name": "step_20_16",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_16"
-                    }
+                    
                 ]
             },
             {
@@ -6821,10 +6824,7 @@
                 "text": "2017",
                 "name": "step_20_17",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_17"
-                    }
+                    
                 ]
             },
             {
@@ -6832,10 +6832,7 @@
                 "text": "2018",
                 "name": "step_20_18",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_18"
-                    }
+                    
                 ]
             },
             {
@@ -6843,10 +6840,7 @@
                 "text": "2019",
                 "name": "step_20_19",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_19"
-                    }
+                    
                 ]
             },
             {
@@ -6854,10 +6848,7 @@
                 "text": "2020",
                 "name": "step_20_20",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_20"
-                    }
+                    
                 ]
             },
             {
@@ -6865,10 +6856,7 @@
                 "text": "2021",
                 "name": "step_20_21",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_21"
-                    }
+                    
                 ]
             },
             {
@@ -6876,10 +6864,7 @@
                 "text": "2022",
                 "name": "step_20_22",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_22"
-                    }
+                    
                 ]
             },
             {
@@ -6887,10 +6872,7 @@
                 "text": "2023",
                 "name": "step_20_23",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_23"
-                    }
+                    
                 ]
             },
             {
@@ -6898,10 +6880,7 @@
                 "text": "2024",
                 "name": "step_20_24",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_24"
-                    }
+                    
                 ]
             },
             {
@@ -6909,10 +6888,7 @@
                 "text": "2025",
                 "name": "step_20_25",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_25"
-                    }
+                    
                 ]
             },
             {
@@ -6920,10 +6896,7 @@
                 "text": "2026",
                 "name": "step_20_26",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_26"
-                    }
+                    
                 ]
             },
             {
@@ -6931,10 +6904,7 @@
                 "text": "2027",
                 "name": "step_20_27",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_27"
-                    }
+                    
                 ]
             },
             {
@@ -6942,34 +6912,10 @@
                 "text": "2028",
                 "name": "step_20_28",
                 "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_28"
-                    }
-                ]
-            },
-            {
-                "type": "Step",
-                "text": "2029",
-                "name": "step_20_29",
-                "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_29"
-                    }
-                ]
-            },
-            {
-                "type": "Step",
-                "text": "2030",
-                "name": "step_20_30",
-                "arrowArr": [
-                    {
-                        "arrow": "drawBottomToTop",
-                        "to": "step_21_30"
-                    }
+                    
                 ]
             }
+            
         ]
     }
 ]

@@ -13,8 +13,9 @@
 
         #scaleDragCanvas {
             position: absolute;
-            width: 80%;
+
             height: auto;
+            background-color: #d5e6e9;
         }
 
         .tool {
@@ -23,8 +24,14 @@
 
         #carCanvas {
             position: absolute;
-            width: 80%;
+
             height: auto;
+        }
+
+        .robot,
+        .sku {
+            border: thin solid #aaaaaa;
+            height: 200px;
         }
     </style>
 </head>
@@ -52,6 +59,42 @@
             <button onclick="AGV(4)" style="border-color: pink;">AGV4</button>
             <br>
             <button onclick="Reset()">重置</button>
+            <br>
+            <label>设备信息</label>
+            <div class="robot">
+                <div>
+                    <label>设备编号：</label>
+                    <span id="rid">111</span>
+                </div>
+                <div>
+                    <label>所在楼层：</label>
+                    <span id="rLevel">111</span>
+                </div>
+                <div>
+                    <label>任务状态：</label>
+                    <span id="rStatus">111</span>
+                </div>
+                <div>
+                    <label>设备状态：</label>
+                    <span id="sStatus">111</span>
+                </div>
+                <div>
+                    <label>当前坐标：</label>
+                    <span id="rPosition">111</span>
+                </div>
+            </div>
+            <br>
+            <label>货架信息</label>
+            <div class="sku">
+                <div>
+                    <label>货架位置：</label>
+                    <span id="skuid">111</span>
+                </div>
+                <div>
+                    <label>货架状态：</label>
+                    <span id="skuStatus">111</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -78,11 +121,13 @@
         Position: Position,
         Move: []
     };
+    var scale = 1;
+    var flowData = null;
     var car1 = {
         x: 0,
         y: 0,
         color: 'black',
-        Arrived:true,
+        Arrived: true,
         path: [],
         i: 0,//当前路径index
         control: {
@@ -103,7 +148,7 @@
         x: 0,
         y: 0,
         color: 'red',
-        Arrived:true,
+        Arrived: true,
         path: [],
         i: 0,
         control: {
@@ -124,7 +169,7 @@
         x: 0,
         y: 0,
         color: 'yellow',
-        Arrived:true,
+        Arrived: true,
         path: [],
         i: 0,
         control: {
@@ -145,7 +190,7 @@
         x: 0,
         y: 0,
         color: 'pink',
-        Arrived:true,
+        Arrived: true,
         path: [],
         i: 0,
         control: {
@@ -180,24 +225,19 @@
         canvas1 = document.getElementById('carCanvas'); //小车对象
         ctx = canvas1.getContext('2d');//画布显示二维图片
 
-
         //网格元素
-        var flowData = res;
+        flowData = res;
         space = drawAgvMap(context, canvas, flowData);
         step = space / 10;
         console.log(space, step)
         //画小车
-
-        for (let i = 0; i < 4; i++) {
-            eval('car' + (i + 1)).x = flowData[0].data[i].x;
-            eval('car' + (i + 1)).y = flowData[0].data[i].y;
-            ctx.fillStyle = eval('car' + (i + 1)).color;
-            ctx.fillRect(eval('car' + (i + 1)).x, eval('car' + (i + 1)).y, 6, 6);
-        }
-
+        initCar();
+        drawCar();
+        canvasEventsInit();
         //websocket
         //webSocket();
-        ws = new WebSocket("ws://10.27.1.28:12580/ws"); //创建WebSocket连接
+        //ws = new WebSocket("ws://10.27.1.28:12580/ws"); //创建WebSocket连接
+        //ws = new WebSocket("ws://10.27.9.187:5000/ws");
         //申请一个WebSocket对象，参数是服务端地址，同http协议使用http://开头一样，WebSocket协议的url使用ws://开头，另外安全的WebSocket协议使用wss://开头
         ws.onopen = function () {
             //当WebSocket创建成功时，触发onopen事件
@@ -213,7 +253,7 @@
                 if (eval("car" + data.AgvId).Arrived) {
                     returnData.AgvId = data.AgvId;
                     returnData.Type = "GetPosition";
-                    returnData.Arrived=true;
+                    returnData.Arrived = true;
                     returnData.Position.X = eval('car' + data.AgvId).control.start.x;
                     returnData.Position.Y = eval('car' + data.AgvId).control.start.y;
                     returnData.Move = [];
@@ -223,7 +263,7 @@
                 else {
                     returnData.AgvId = data.AgvId;
                     returnData.Type = "GetPosition";
-                    returnData.Arrived=false;
+                    returnData.Arrived = false;
                     returnData.Position.X = eval('car' + data.AgvId).control.start.x;
                     returnData.Position.Y = eval('car' + data.AgvId).control.start.y;
                     returnData.Move = [];
@@ -236,7 +276,7 @@
                 console.log("移动: " + e.data);
                 var path = data.Move;
                 eval('car' + data.AgvId).path = path;
-                eval('car' + data.AgvId).Arrived=false;
+                eval('car' + data.AgvId).Arrived = false;
                 move(eval('car' + data.AgvId));
             }
             //ws.send("收到..");
@@ -252,11 +292,33 @@
 
     })();
 
+    //画小车
+    function initCar() {
+        for (let i = 0; i < 4; i++) {
+            eval('car' + (i + 1)).x = flowData[0].data[i].x;
+            eval('car' + (i + 1)).y = flowData[0].data[i].y;
+        }
+    }
+    function drawCar() {
+        for (let i = 0; i < 4; i++) {
+            ctx.fillStyle = eval('car' + (i + 1)).color;
+            arcImg(ctx, eval('car' + (i + 1)).x, eval('car' + (i + 1)).y);
+            //agv图片
+            // let img=new Image();
+            // img.src="./AGV.png";
+            // img.onload=function(){
+            //     circleImg(ctx, img,eval('car' + (i + 1)).x ,eval('car' + (i + 1)).y , 10);
+            // }
+            //小方块
+            //ctx.fillRect(eval('car' + (i + 1)).x, eval('car' + (i + 1)).y, 6, 6);
+        }
+    }
+    //重置小车位置
     function Reset() {
         returnData.Type = "Reset";
         ws.send(JSON.stringify(returnData));
     }
-
+    //移动指令
     function AGV(num) {
         if ($('#agv' + num).val() != '') {
             var inp = $('#agv' + num).val().split(',');
@@ -264,7 +326,8 @@
             eval('car' + num).control.end.y = inp[1];
         }
         $.ajax({
-            url: 'http://10.27.1.28:12580/api/Dijkstra/GetPath',
+            url: "http://10.27.9.187:5000/api/Dijkstra/GetPath",
+            //url: 'http://10.27.1.28:12580/api/Dijkstra/GetPath',
             type: 'post',
             dataType: 'json',
             async: false,
@@ -282,34 +345,16 @@
             }
         })
     }
-
+    //调用小车
     function move(car) {
         if (car.i == car.path.length) {
             //结束
             console.log("agv:" + car.control.agvId + '移动结束')
             car.i = 0;
-            car.Arrived=true;
-            // car.control.start.x = car.control.end.x;
-            // car.control.start.y = car.control.end.y;
+            car.Arrived = true;
         }
         else {
-            // var oldelement = car.i == 0 ? "" : car.path[car.i - 1];
-            // switch (oldelement) {
-            //     case 'up':
-            //         car.control.start.y -= 1;
-            //         break;
-            //     case 'down':
-            //         car.control.start.y += 1;
-            //         break;
-            //     case 'left':
-            //         car.control.start.x -= 1;
-            //         break;
-            //     case 'right':
-            //         car.control.start.x += 1;
-            //         break;
-            //     case '':
-            //         break;
-            // }
+
             var element = car.path[car.i];
             car.i++;
             switch (element) {
@@ -330,10 +375,6 @@
 
                     break;
             }
-            //move(car);
-            // setTimeout(() => {
-            //     move(car);
-            //     }, 1000);
         }
     }
     //小车移动
@@ -348,6 +389,7 @@
             else {
                 //console.log('up...')
                 car.control.start.y -= 1;
+
                 clearInterval(id);
                 move(car);
             }
@@ -364,6 +406,7 @@
             else {
                 //console.log('down...')
                 car.control.start.y += 1;
+
                 clearInterval(id);
                 move(car);
             }
@@ -382,6 +425,7 @@
             else {
                 //console.log('left...')
                 car.control.start.x -= 1;
+
                 clearInterval(id);
                 move(car);
             }
@@ -400,8 +444,8 @@
             else {
                 //console.log('right...')
                 car.control.start.x += 1;
-                clearInterval(id);
 
+                clearInterval(id);
                 move(car);
             }
         }, 100);
@@ -410,7 +454,7 @@
 
     function run(ctx, position, car) {
         //console.log(car.x, car.y)
-        ctx.clearRect(car.x - 5, car.y - 5, 16, 16);
+        ctx.clearRect(car.x - 10, car.y - 10, 25, 25);
         switch (position) {
             case 'up':
                 speed = -step;
@@ -432,7 +476,8 @@
 
         ctx.beginPath();
         ctx.fillStyle = car.color;
-        ctx.fillRect(car.x, car.y, 6, 6);
+        //ctx.fillRect(car.x, car.y, 6, 6);
+        arcImg(ctx, car.x, car.y);
         ctx.closePath();
         ctx.fill();
     }
@@ -465,8 +510,159 @@
         }
     }
 
+    /*事件注册*/
+    function canvasEventsInit() {
+        console.log("canvasEventsInit...")
+        canvas1.onmousedown = function (event) {
+            console.log("onmousedown...")
+            //console.log(event)
+            dragging = true;
+            // var cRect = canvas.getBoundingClientRect();
+            // var canvasX = Math.round(event.clientX - cRect.left);
+            // var canvasY = Math.round(event.clientY - cRect.top);
+            // $('#skuid').text("X: " + canvasX + ", Y: " + canvasY);
+            // flowData.forEach(function (row) {
+            //         for (var i = 0; i < row.data.length; i++) {
+            //             row.data[i].moveX = row.data[i].moveX + imgX;
+            //             row.data[i].moveY = row.data[i].moveY + imgY;
+            //         }
+            // });
+            // imgX = 0;
+            // imgY = 0;
+            // flowData.forEach(function (row) {
+            //     for (var i = 0; i < row.data.length; i++) {
+            //         if((row.data[i].moveX>canvasX-10 && row.data[i].moveX<canvasX+10) && (row.data[i].moveY>canvasY-10 && row.data[i].moveY<canvasY+10) )
+            //         {
+            //             console.log('找到了。。')
+            //             $('#skuStatus').text("name: " + row.data[i].name);
+            //             break;
+            //         }
+                    
+            //     }
+            // });
+        };
+        canvas1.onmousemove = function (evt) {  //移动
+            //console.log("onmousemove...")
+            //显示当前鼠标位置
+            // var cRect = canvas.getBoundingClientRect();              
+            // var canvasX = Math.round(evt.clientX - cRect.left);        
+            // var canvasY = Math.round(evt.clientY - cRect.top);         
+            // $('#skuid').text("X: "+canvasX+", Y: "+canvasY);
 
 
-</script>
+            if (dragging) {
+                posl = windowToCanvas(evt.clientX, evt.clientY);
+                var x = posl.x - pos.x, y = posl.y - pos.y;
+                pos = JSON.parse(JSON.stringify(posl));
+                //console.log(x,y)
+                //网格
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.transform(1, 0, 0, 1, x, y);
+                space = drawAgvMap(context, canvas, flowData);
+                //计算移动缩放后的坐标
+                // if(isNaN(x) || isNaN(y))
+                // {
+                //     console.log('nan')
+                // }
+                // else
+                // {
+                //     imgX += x;
+                //     imgY += y;
+                // }
+                //console.log(flowData)
+                //var data = moveMap(context, canvas, flowData, x, y, box);
+                step = space / 10;
+                //小车
+                ctx.clearRect(0, 0, canvas1.width, canvas1.height);
+                ctx.transform(1, 0, 0, 1, x, y);
+                drawCar();
+            }
+        };
+        canvas1.onmouseup = function () {
+            console.log("onmouseup...")
+            dragging = false;
+        };
+        canvas1.onmousewheel = canvas.onwheel = function (event) {    //滚轮放大缩小
+            scale = 1.0;
+            console.log('滑轮滚动。。。')
+            var pos = windowToCanvas(event.clientX, event.clientY);
+            event.wheelDelta = event.wheelDelta ? event.wheelDelta : (event.deltalY * (-40));  //获取当前鼠标的滚动情况
+            if (event.wheelDelta > 0) {// 放大
+                scale += 0.1;
+            } else {//  缩小
+                scale -= 0.1;
+            }
+            if (scale == 1.0) {
+                console.log("scale", scale)
+                //context.transform(scale,0,0,scale,0,0);
+                space = drawAgvMap(context, canvas, flowData);
+                //var data = drawAgvMap(context, canvas, flowData, 0, 0);
+                step = space / 10;
+            }
+            else {
+                // flowData.forEach(function (row) {
+                //     for (var i = 0; i < row.data.length; i++) {
+                //         row.data[i].moveX = row.data[i].moveX + imgX;
+                //         row.data[i].moveY = row.data[i].moveY + imgY;
+                //     }
+                // });
+                // imgX = 0;
+                // imgY = 0;
+                //网格
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                console.log("scale", scale)
+                context.transform(scale, 0, 0, scale, 0, 0);
+                space = drawAgvMap(context, canvas, flowData);
+                //计算移动缩放后的坐标
+                
+                // flowData.forEach(function (row) {
+                //     for (var i = 0; i < row.data.length; i++) {
+                //         row.data[i].moveX = row.data[i].moveX * scale;
+                //         row.data[i].moveY = row.data[i].moveY * scale;
+                //     }
+                // });
+                //console.log(flowData)
+                //var data = wheelMap(context, canvas, flowData, scale, 0, 0);   //重新绘制图片
+                step = space / 10;
+                //小车
+                ctx.clearRect(0, 0, canvas1.width, canvas1.height);
+                ctx.transform(scale, 0, 0, scale, 0, 0);
+                drawCar();
+            }
+        };
+    }
+    /*坐标转换*/
+    function windowToCanvas(x, y) {
+        var box = canvas.getBoundingClientRect();  //这个方法返回一个矩形对象，包含四个属性：left、top、right和bottom。分别表示元素各边与页面上边和左边的距离
+        //console.log(box)
+        return {
+            x: x - box.left - (box.width - canvas.width) / 2,
+            y: y - box.top - (box.height - canvas.height) / 2
+        };
+    }
+    //画圆小车
+    function circleImg(ctx, img, x, y, r) {
+        ctx.save();
+        var d = 2 * r;
+        var cx = x + r;
+        var cy = y + r;
+        ctx.arc(cx, cy, r, 0, 2 * Math.PI);
+        ctx.clip();
+        ctx.fillStyle = "#5B9BD5";//5B9BD5
+        ctx.drawImage(img, x, y, d, d);
+        ctx.restore();
+    }
+    //画圆数字
+    function arcImg(ctx, x, y) {
+        ctx.beginPath();//开始绘制
+        ctx.arc(x + 4, y + 3, 6, 0, 2 * Math.PI);//arc 的意思是“弧”
+        //ctx.fillStyle="#ff0";//设置填充颜色
+        ctx.fill();//开始填充
+        //ctx.strokeStyle="blue";//将线条颜色设置为蓝色
+        ctx.stroke();//stroke() 方法默认颜色是黑色（如果没有上面一行，则会是黑色）。
+
+    }
+
+    </script>
 
 </html>
