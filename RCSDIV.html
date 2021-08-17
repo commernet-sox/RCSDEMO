@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCS地图</title>
+    <style>
+        .box {
+            width: 1920px;
+            height: 1080px;
+            float: left;
+            transform: scale(1);
+            top: 0px;
+            left: 0px;
+            position: absolute;
+        }
+
+        #scaleDragCanvas {
+            height: auto;
+            background-color: #d5e6e9;
+            position: absolute;
+        }
+
+        .tool {
+            float: right;
+        }
+
+        #carCanvas {
+            position: absolute;
+            height: auto;
+        }
+
+        .robot,
+        .sku {
+            border: thin solid #aaaaaa;
+            height: 200px;
+        }
+        .icon{
+            width: 16px;
+            height: 16px;
+            position: absolute;
+        }
+        .icon:hover{
+            cursor: pointer;
+            border: thin solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1" class="box" onmousewheel="scaleDom()">
+        <canvas id="scaleDragCanvas" width="1920" height="1080"></canvas>
+        <canvas id="carCanvas" width="1920" height="1080"></canvas>
+        
+    </div>
+    <div class="tool">
+        <button id="up" onclick="up(car1)">上</button>
+        <button id="down" onclick="down(car1)">下</button>
+        <button id="left" onclick="left(car1)">左</button>
+        <button id="right" onclick="right(car1)">右</button>
+        <br>
+        <input type="text" id="agv1" value="29,19">
+        <button onclick="AGV(1)" style="border-color: black;">AGV1</button>
+        <br>
+        <input type="text" id="agv2" value="1,18">
+        <button onclick="AGV(2)" style="border-color: red;">AGV2</button>
+        <br>
+        <input type="text" id="agv3" value="27,16">
+        <button onclick="AGV(3)" style="border-color: yellow;">AGV3</button>
+        <br>
+        <input type="text" id="agv4" value="3,17">
+        <button onclick="AGV(4)" style="border-color: pink;">AGV4</button>
+        <br>
+        <button onclick="Reset()">重置</button>
+        <br>
+        <label>设备信息</label>
+        <div class="robot">
+            <div>
+                <label>设备编号：</label>
+                <span id="rid">111</span>
+            </div>
+            <div>
+                <label>所在楼层：</label>
+                <span id="rLevel">111</span>
+            </div>
+            <div>
+                <label>任务状态：</label>
+                <span id="rStatus">111</span>
+            </div>
+            <div>
+                <label>设备状态：</label>
+                <span id="sStatus">111</span>
+            </div>
+            <div>
+                <label>当前坐标：</label>
+                <span id="rPosition">111</span>
+            </div>
+        </div>
+        <br>
+        <label>货架信息</label>
+        <div class="sku">
+            <div>
+                <label>货架位置：</label>
+                <span id="skuid">111</span>
+            </div>
+            <div>
+                <label>货架状态：</label>
+                <span id="skuStatus">111</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="./jquery.js"></script>
+<script type="text/javascript" src="./RCSDIV.js"></script>
+<script>
+    //画布元素
+    var canvas, context, ctx, canvas1;
+    var img, imgX = 0, imgY = 0, imgScale = 1;
+    var MINIMUM_SCALE = 1.0, pos = {}, posl = {}, dragging = false;
+    var oDiv;
+    var icon;
+    var res = "";
+    var speed = 0;
+    var space = 0;
+    var step = 0;
+    var i = 0;
+    var finish = true;
+    var ws = null;
+    var Position = { X: 0, Y: 0 };
+    var returnData = {
+        AgvId: 0,
+        Type: "",
+        Arrived: true,
+        Position: Position,
+        Move: []
+    };
+    var scale = 1;
+    var flowData = null;
+    var car1 = {
+        x: 0,
+        y: 0,
+        color: 'black',
+        Arrived: true,
+        path: [],
+        i: 0,//当前路径index
+        control: {
+            start: {
+                x: 0,
+                y: 0,
+                floor: 1
+            },
+            end: {
+                x: 18,
+                y: 19,
+                floor: 1
+            },
+            agvId: 1
+        }
+    };
+    var car2 = {
+        x: 0,
+        y: 0,
+        color: 'red',
+        Arrived: true,
+        path: [],
+        i: 0,
+        control: {
+            start: {
+                x: 1,
+                y: 0,
+                floor: 1
+            },
+            end: {
+                x: 19,
+                y: 19,
+                floor: 1
+            },
+            agvId: 2
+        }
+    };
+    var car3 = {
+        x: 0,
+        y: 0,
+        color: 'yellow',
+        Arrived: true,
+        path: [],
+        i: 0,
+        control: {
+            start: {
+                x: 2,
+                y: 0,
+                floor: 1
+            },
+            end: {
+                x: 25,
+                y: 19,
+                floor: 1
+            },
+            agvId: 3
+        }
+    };
+    var car4 = {
+        x: 0,
+        y: 0,
+        color: 'pink',
+        Arrived: true,
+        path: [],
+        i: 0,
+        control: {
+            start: {
+                x: 3,
+                y: 0,
+                floor: 1
+            },
+            end: {
+                x: 26,
+                y: 19,
+                floor: 1
+            },
+            agvId: 4
+        }
+    };
+    (function int() {
+        $.ajax({
+            url: './RCSNew.json',
+            type: 'get',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                res = data;
+                console.log(data)
+            }
+        })
+
+        canvas = document.getElementById('scaleDragCanvas'); //画布对象
+        context = canvas.getContext('2d');//画布显示二维图片
+
+        canvas1 = document.getElementById('carCanvas'); //小车对象
+        ctx = canvas1.getContext('2d');//画布显示二维图片
+
+        oDiv = document.getElementById('div1');
+        
+        // 给div添加鼠标按下事件
+        oDiv.addEventListener('mousedown', function () {
+            // 鼠标的移动,不仅仅是再标签内移动,在整个页面中移动,都要执行事件获取坐标
+            // JavaScript自动给函数形参赋值事件对象,不需要单独再去赋值
+            document.addEventListener('mousemove', myMove);
+        })
+
+        oDiv.addEventListener('mouseup', function () {
+            // 当鼠标抬起时,让鼠标移动不再有执行函数
+            // 使用 removeEventListener() 删除事件绑定的 函数
+            // 绑定时必须是函数名称,才能执行函数的是删除
+            document.removeEventListener('mousemove', myMove);
+        })
+
+        
+        //网格元素
+        flowData = res;
+        space = drawAgvMap(context, canvas, flowData);
+        step = space / 10;
+        console.log(space, step)
+        //画小车
+        initCar();
+        drawCar();
+        //canvasEventsInit();
+
+        //添加图标
+        addIcon();
+        icon=$('.icon');
+        icon.on('mouseover',function(){
+            //console.log('mouseover')
+            var x= $(this).css("margin-left");
+            var y= $(this).css("margin-top");
+            //console.log(x,y)
+            flowData.forEach(function (row) {
+                for (var i = 0; i < row.data.length; i++) {
+                    if(row.data[i].x+"px"==x && row.data[i].y+"px"==y)
+                    {
+                        //console.log('找到了。。')
+                        $('#skuStatus').text("name: " + row.data[i].name);
+                        $('#skuid').text("x: " + row.data[i].x+" y:"+row.data[i].y);
+                        break;
+                    }
+
+                }
+            });
+        })
+        icon.on('mouseout',function(){
+            //console.log('mouseout')
+            $('#skuStatus').text("");
+            $('#skuid').text("");
+        })
+        //icon.addEventListener('mousemove',iconMove);
+        //websocket
+        webSocket();
+
+    })();
+    //div缩放
+    function scaleDom() {
+        let div = document.getElementById("div1");
+        let scale = parseFloat((div.style.transform || `scale(1)`).replace(/[^0-9.]/gi, ''))
+        let size = event.wheelDelta / 1200;
+        scale += size;
+        if (scale >= 0.5) div.style.transform = `scale(${scale})`;
+    }
+    //div移动
+    function myMove(e) {
+        console.log('myMove...')
+        e = e || window.event;
+        var top = e.clientY;
+        var left = e.clientX;
+        // console.log(top , left);
+        // 获取div标签的相关数据
+        var h = oDiv.offsetHeight;
+        var w = oDiv.offsetWidth;
+        // 如果需要div中心位置和鼠标位置重合
+        // 需要减去占位的一半
+        oDiv.style.top = top - h / 2 + 'px';
+        oDiv.style.left = left - w / 2 + 'px';
+    }
+    //添加货架图标
+    function addIcon() {
+        flowData.forEach(function (row) {
+            for (var i = 0; i < row.data.length; i++) {
+                if(row.data[i].show==undefined || row.data[i].show==true)
+                {
+                    $('#div1').append("<img src='./sku.png' class='icon' style='margin-left:"+row.data[i].x+"px;margin-top:"+row.data[i].y+"px;'>");
+                }
+            }
+        });
+    }
+    
+    
+    //画小车
+    function initCar() {
+        for (let i = 0; i < 4; i++) {
+            eval('car' + (i + 1)).x = flowData[0].data[i].x;
+            eval('car' + (i + 1)).y = flowData[0].data[i].y;
+        }
+    }
+    function drawCar() {
+        for (let i = 0; i < 4; i++) {
+            ctx.fillStyle = eval('car' + (i + 1)).color;
+            arcImg(ctx, eval('car' + (i + 1)).x, eval('car' + (i + 1)).y);
+            //agv图片
+            // let img=new Image();
+            // img.src="./AGV.png";
+            // img.onload=function(){
+            //     circleImg(ctx, img,eval('car' + (i + 1)).x ,eval('car' + (i + 1)).y , 10);
+            // }
+            //小方块
+            //ctx.fillRect(eval('car' + (i + 1)).x, eval('car' + (i + 1)).y, 6, 6);
+        }
+    }
+    //重置小车位置
+    function Reset() {
+        returnData.Type = "Reset";
+        ws.send(JSON.stringify(returnData));
+    }
+    //移动指令
+    function AGV(num) {
+        if ($('#agv' + num).val() != '') {
+            var inp = $('#agv' + num).val().split(',');
+            eval('car' + num).control.end.x = inp[0];
+            eval('car' + num).control.end.y = inp[1];
+        }
+        $.ajax({
+            //url: "http://10.27.9.187:5000/api/Dijkstra/GetPath",
+            url: 'http://10.27.1.28:12580/api/Dijkstra/GetPath',
+            type: 'post',
+            dataType: 'json',
+            async: false,
+            contentType: 'application/json',
+            data: JSON.stringify(eval('car' + num).control),
+            success: function (data) {
+                console.log(data)
+                if (data.success) {
+                    // eval('car' + num).path = data.data;
+                    // move(eval('car' + num));
+                }
+                else {
+                    alert(data.msg)
+                }
+            }
+        })
+    }
+    //调用小车
+    function move(car) {
+        if (car.i == car.path.length) {
+            //结束
+            console.log("agv:" + car.control.agvId + '移动结束')
+            car.i = 0;
+            car.Arrived = true;
+        }
+        else {
+
+            var element = car.path[car.i];
+            car.i++;
+            switch (element) {
+                case 'up':
+                    up(car);
+
+                    break;
+                case 'down':
+                    down(car);
+
+                    break;
+                case 'left':
+                    left(car);
+
+                    break;
+                case 'right':
+                    right(car);
+
+                    break;
+            }
+        }
+    }
+    //小车移动
+    function up(car) {
+        //console.log('上')
+        var i = 0;
+        var id = setInterval(() => {
+            i += step;
+            if (i <= space) {
+                run(ctx, 'up', car)
+            }
+            else {
+                //console.log('up...')
+                car.control.start.y -= 1;
+
+                clearInterval(id);
+                move(car);
+            }
+        }, 100);
+    }
+    function down(car) {
+        //console.log('下')
+        var i = 0;
+        var id = setInterval(() => {
+            i += step;
+            if (i <= space) {
+                run(ctx, 'down', car)
+            }
+            else {
+                //console.log('down...')
+                car.control.start.y += 1;
+
+                clearInterval(id);
+                move(car);
+            }
+        }, 100);
+
+    }
+    function left(car) {
+
+        //console.log('左')
+        var i = 0;
+        var id = setInterval(() => {
+            i += step;
+            if (i <= space ) {
+                run(ctx, 'left', car)
+            }
+            else {
+                //console.log('left...')
+                car.control.start.x -= 1;
+
+                clearInterval(id);
+                move(car);
+            }
+        }, 100);
+
+    }
+    function right(car) {
+
+        //console.log('右')
+        var i = 0;
+        var id = setInterval(() => {
+            i += step;
+            if (i <= space ) {
+                run(ctx, 'right', car)
+            }
+            else {
+                //console.log('right...')
+                car.control.start.x += 1;
+
+                clearInterval(id);
+                move(car);
+            }
+        }, 100);
+
+    }
+
+    function run(ctx, position, car) {
+        //console.log(car.x, car.y)
+        ctx.clearRect(car.x - 15, car.y - 15, 40, 40);
+        switch (position) {
+            case 'up':
+                speed = -step;
+                car.y += speed;
+                break;
+            case 'down':
+                speed = step;
+                car.y += speed;
+                break;
+            case 'left':
+                speed = -step;
+                car.x += speed;
+                break;
+            case 'right':
+                speed = step;
+                car.x += speed;
+                break;
+        }
+
+        ctx.beginPath();
+        ctx.fillStyle = car.color;
+        //ctx.fillRect(car.x, car.y, 6, 6);
+        arcImg(ctx, car.x, car.y);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    function webSocket() {
+        if ("WebSocket" in window) {
+            console.log("您的浏览器支持WebSocket");
+            ws = new WebSocket("ws://10.27.1.28:12580/ws"); //创建WebSocket连接
+            //ws = new WebSocket("ws://10.27.9.187:5000/ws");
+            //申请一个WebSocket对象，参数是服务端地址，同http协议使用http://开头一样，WebSocket协议的url使用ws://开头，另外安全的WebSocket协议使用wss://开头
+            ws.onopen = function () {
+                //当WebSocket创建成功时，触发onopen事件
+                console.log("open");
+                //ws.send("hello"); //将消息发送到服务端
+            }
+            ws.onmessage = function (e) {
+                //当客户端收到服务端发来的消息时，触发onmessage事件，参数e.data包含server传递过来的数据
+                //console.log(e);
+                //console.log("接受: " + e.data);
+                var data = JSON.parse(e.data);
+                if (data.Type == "GetPosition") {
+                    if (eval("car" + data.AgvId).Arrived) {
+                        returnData.AgvId = data.AgvId;
+                        returnData.Type = "GetPosition";
+                        returnData.Arrived = true;
+                        returnData.Position.X = eval('car' + data.AgvId).control.start.x;
+                        returnData.Position.Y = eval('car' + data.AgvId).control.start.y;
+                        returnData.Move = [];
+                        ws.send(JSON.stringify(returnData));
+                        console.log("发送：" + JSON.stringify(returnData))
+                    }
+                    else {
+                        returnData.AgvId = data.AgvId;
+                        returnData.Type = "GetPosition";
+                        returnData.Arrived = false;
+                        returnData.Position.X = eval('car' + data.AgvId).control.start.x;
+                        returnData.Position.Y = eval('car' + data.AgvId).control.start.y;
+                        returnData.Move = [];
+                        ws.send(JSON.stringify(returnData));
+                        console.log("发送：" + JSON.stringify(returnData))
+                    }
+
+                }
+                if (data.Type == "MoveAgv") {
+                    console.log("移动: " + e.data);
+                    var path = data.Move;
+                    eval('car' + data.AgvId).path = path;
+                    eval('car' + data.AgvId).Arrived = false;
+                    move(eval('car' + data.AgvId));
+                }
+                //ws.send("收到..");
+            }
+            ws.onclose = function (e) {
+                //当客户端收到服务端发送的关闭连接请求时，触发onclose事件
+                console.log("close");
+            }
+            ws.onerror = function (e) {
+                //如果出现连接、处理、接收、发送数据失败的时候触发onerror事件
+                console.log(e);
+            }
+        } else {
+            console.log("您的浏览器不支持WebSocket");
+        }
+    }
+
+    /*事件注册*/
+    function canvasEventsInit() {
+        console.log("canvasEventsInit...")
+        canvas1.onmousedown = function (event) {
+            console.log("onmousedown...")
+            //console.log(event)
+            dragging = true;
+            // var cRect = canvas.getBoundingClientRect();
+            // var canvasX = Math.round(event.clientX - cRect.left);
+            // var canvasY = Math.round(event.clientY - cRect.top);
+            // $('#skuid').text("X: " + canvasX + ", Y: " + canvasY);
+            // flowData.forEach(function (row) {
+            //         for (var i = 0; i < row.data.length; i++) {
+            //             row.data[i].moveX = row.data[i].moveX + imgX;
+            //             row.data[i].moveY = row.data[i].moveY + imgY;
+            //         }
+            // });
+            // imgX = 0;
+            // imgY = 0;
+            // flowData.forEach(function (row) {
+            //     for (var i = 0; i < row.data.length; i++) {
+            //         if((row.data[i].moveX>canvasX-10 && row.data[i].moveX<canvasX+10) && (row.data[i].moveY>canvasY-10 && row.data[i].moveY<canvasY+10) )
+            //         {
+            //             console.log('找到了。。')
+            //             $('#skuStatus').text("name: " + row.data[i].name);
+            //             break;
+            //         }
+
+            //     }
+            // });
+        };
+        canvas1.onmousemove = function (evt) {  //移动
+            //console.log("onmousemove...")
+            //显示当前鼠标位置
+            // var cRect = canvas.getBoundingClientRect();              
+            // var canvasX = Math.round(evt.clientX - cRect.left);        
+            // var canvasY = Math.round(evt.clientY - cRect.top);         
+            // $('#skuid').text("X: "+canvasX+", Y: "+canvasY);
+
+
+            if (dragging) {
+                posl = windowToCanvas(evt.clientX, evt.clientY);
+                var x = posl.x - pos.x, y = posl.y - pos.y;
+                pos = JSON.parse(JSON.stringify(posl));
+                //console.log(x,y)
+                //网格
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.transform(1, 0, 0, 1, x, y);
+                space = drawAgvMap(context, canvas, flowData);
+                //计算移动缩放后的坐标
+                // if(isNaN(x) || isNaN(y))
+                // {
+                //     console.log('nan')
+                // }
+                // else
+                // {
+                //     imgX += x;
+                //     imgY += y;
+                // }
+                //console.log(flowData)
+                //var data = moveMap(context, canvas, flowData, x, y, box);
+                step = space / 10;
+                //小车
+                ctx.clearRect(0, 0, canvas1.width, canvas1.height);
+                ctx.transform(1, 0, 0, 1, x, y);
+                drawCar();
+            }
+        };
+        canvas1.onmouseup = function () {
+            console.log("onmouseup...")
+            dragging = false;
+        };
+        canvas1.onmousewheel = canvas.onwheel = function (event) {    //滚轮放大缩小
+            scale = 1.0;
+            console.log('滑轮滚动。。。')
+            var pos = windowToCanvas(event.clientX, event.clientY);
+            event.wheelDelta = event.wheelDelta ? event.wheelDelta : (event.deltalY * (-40));  //获取当前鼠标的滚动情况
+            if (event.wheelDelta > 0) {// 放大
+                scale += 0.1;
+            } else {//  缩小
+                scale -= 0.1;
+            }
+            if (scale == 1.0) {
+                console.log("scale", scale)
+                //context.transform(scale,0,0,scale,0,0);
+                space = drawAgvMap(context, canvas, flowData);
+                //var data = drawAgvMap(context, canvas, flowData, 0, 0);
+                step = space / 10;
+            }
+            else {
+                // flowData.forEach(function (row) {
+                //     for (var i = 0; i < row.data.length; i++) {
+                //         row.data[i].moveX = row.data[i].moveX + imgX;
+                //         row.data[i].moveY = row.data[i].moveY + imgY;
+                //     }
+                // });
+                // imgX = 0;
+                // imgY = 0;
+                //网格
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                console.log("scale", scale)
+                context.transform(scale, 0, 0, scale, 0, 0);
+                space = drawAgvMap(context, canvas, flowData);
+                //计算移动缩放后的坐标
+
+                // flowData.forEach(function (row) {
+                //     for (var i = 0; i < row.data.length; i++) {
+                //         row.data[i].moveX = row.data[i].moveX * scale;
+                //         row.data[i].moveY = row.data[i].moveY * scale;
+                //     }
+                // });
+                //console.log(flowData)
+                //var data = wheelMap(context, canvas, flowData, scale, 0, 0);   //重新绘制图片
+                step = space / 10;
+                //小车
+                ctx.clearRect(0, 0, canvas1.width, canvas1.height);
+                ctx.transform(scale, 0, 0, scale, 0, 0);
+                drawCar();
+            }
+        };
+    }
+    /*坐标转换*/
+    function windowToCanvas(x, y) {
+        var box = canvas.getBoundingClientRect();  //这个方法返回一个矩形对象，包含四个属性：left、top、right和bottom。分别表示元素各边与页面上边和左边的距离
+        //console.log(box)
+        return {
+            x: x - box.left - (box.width - canvas.width) / 2,
+            y: y - box.top - (box.height - canvas.height) / 2
+        };
+    }
+    //画圆小车
+    function circleImg(ctx, img, x, y, r) {
+        ctx.save();
+        var d = 2 * r;
+        var cx = x + r;
+        var cy = y + r;
+        ctx.arc(cx, cy, r, 0, 2 * Math.PI);
+        ctx.clip();
+        ctx.fillStyle = "#5B9BD5";//5B9BD5
+        ctx.drawImage(img, x, y, d, d);
+        ctx.restore();
+    }
+    //画圆数字
+    function arcImg(ctx, x, y) {
+        ctx.beginPath();//开始绘制
+        ctx.arc(x + 8, y + 8, 10, 0, 2 * Math.PI);//arc 的意思是“弧”
+        //ctx.fillStyle="#ff0";//设置填充颜色
+        ctx.fill();//开始填充
+        //ctx.strokeStyle="blue";//将线条颜色设置为蓝色
+        ctx.stroke();//stroke() 方法默认颜色是黑色（如果没有上面一行，则会是黑色）。
+
+    }
+
+</script>
+
+</html>

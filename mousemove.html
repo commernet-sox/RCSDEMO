@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 5000px;
+        }
+
+        div {
+            width: 400px;
+            height: 400px;
+            background: pink;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+
+
+<body>
+    <div></div>
+
+    <script>
+        // 鼠标拖拽div,移动事件
+        // 通过鼠标的移动事件,获取标签位置的坐标
+        // 将坐标赋值给div标签,作为定位的数值数据
+
+        // 一般拖拽效果是 鼠标按下跟随移动,鼠标抬起,拖拽效果消失
+
+
+        var oDiv = document.querySelector('div');
+
+        // 给div添加鼠标按下事件
+        oDiv.addEventListener('mousedown', function () {
+            // 鼠标的移动,不仅仅是再标签内移动,在整个页面中移动,都要执行事件获取坐标
+            // JavaScript自动给函数形参赋值事件对象,不需要单独再去赋值
+            document.addEventListener('mousemove', myMove );
+        })
+
+        oDiv.addEventListener('mouseup', function () {
+            // 当鼠标抬起时,让鼠标移动不再有执行函数
+            // 使用 removeEventListener() 删除事件绑定的 函数
+            // 绑定时必须是函数名称,才能执行函数的是删除
+            document.removeEventListener('mousemove' , myMove );
+        })
+
+        // 事件对象是 JavaScript程序 自动存储的数据
+        // 在调用时,是不需要传参的
+        function myMove(e) {
+            e = e || window.event;
+
+            // 获取鼠标坐标位置
+            
+            // 使用 offsetY  offsetX  会造成 div 闪来闪去
+            // 必须要记住: 鼠标拖拽,不能使用 offsetY  offsetX 
+            // 在鼠标拖拽时,要是用 clientY 和 clientY 获取坐标
+
+            // 当前是 div没有范围,只是在整个页面中拖拽,使用的 clientY clientX
+            // 当前使用的是 fixed 定位
+            // 定位的坐标原点是 视窗窗口的左上角
+            // 获取定位坐标的原点也要是 视窗窗口的左上角
+
+            var top = e.clientY;
+            var left = e.clientX;
+
+            // console.log(top , left);
+
+            // 获取div标签的相关数据
+            var h = oDiv.offsetHeight;
+            var w = oDiv.offsetWidth;
+
+            // 如果需要div中心位置和鼠标位置重合
+            // 需要减去占位的一半
+            oDiv.style.top = top - h/2 + 'px';
+            oDiv.style.left = left - w/2 + 'px';
+        }
+
+        // 总结:
+        //    1,给鼠标添加 mousedown  和 mouseup 事件
+        //    2, mousedown 中 给 document 绑定 mousemove 事件
+        //       之后还要删除  mousemove 事件的 事件处理函数 必须绑定 函数名称
+        //    3, mouseup 中 删除 mousemove 事件绑定的 函数名称
+        //    4, mousemove 事件中 事件函数,要获取事件对象e
+        //       JavaScript会自动给事件对象e,存储赋值实参,我们不需要赋值实参
+        //    5, 当前demo中,div标签使用的是fixed定位
+        //       fixed定位原点,是视窗窗口的左上角
+        //       获取 鼠标坐标 , 也要使用 clientX clientY 获取相对视窗窗口的坐标
+
+    </script>
+</body>
+</html>
